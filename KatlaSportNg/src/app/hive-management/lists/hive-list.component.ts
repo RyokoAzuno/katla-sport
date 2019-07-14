@@ -9,11 +9,15 @@ import { HiveService } from '../services/hive.service';
 })
 export class HiveListComponent implements OnInit {
 
-  hives: HiveListItem[];
+  hives: Array<HiveListItem>;
 
   constructor(private hiveService: HiveService) { }
 
   ngOnInit() {
+    this.getHives();
+  }
+
+  fillDeletedItems() {
     this.getHives();
   }
 
@@ -22,10 +26,14 @@ export class HiveListComponent implements OnInit {
   }
 
   onDelete(hiveId: number) {
+    console.log("onDelete");
     var hive = this.hives.find(h => h.id == hiveId);
-    this.hiveService.setHiveStatus(hiveId, true).subscribe(c => hive.isDeleted = true);
+    this.hiveService.setHiveStatus(hiveId, true).subscribe(h => hive.isDeleted = true);
   }
 
   onRestore(hiveId: number) {
+    console.log("onRestore");
+    var hive = this.hives.find(h => h.id == hiveId);
+    this.hiveService.setHiveStatus(hiveId, false).subscribe(h => hive.isDeleted = false);
   }
 }
