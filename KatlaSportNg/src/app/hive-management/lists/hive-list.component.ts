@@ -9,7 +9,7 @@ import { HiveService } from '../services/hive.service';
 })
 export class HiveListComponent implements OnInit {
 
-  hives: Array<HiveListItem>;
+  hives: HiveListItem[];
 
   constructor(private hiveService: HiveService) { }
 
