@@ -20,6 +20,7 @@ namespace KatlaSport.DataAccess
             : base("DefaultConnection")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>(true));
+            //Database.ExecuteSqlCommand("DBCC CHECKIDENT('product_hive_sections', RESEED, 1);");
 
             // DatabaseLogger = databaseLogger;
 
